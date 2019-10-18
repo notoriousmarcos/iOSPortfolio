@@ -2,6 +2,8 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+*.DS_Store
+
 ## Build generated
 build/
 DerivedData/
@@ -19,8 +21,8 @@ xcuserdata/
 
 ## Other
 *.moved-aside
-*.xccheckout
-*.xcscmblueprint
+*.xcuserstate
+*.xcfilelist
 
 ## Obj-C/Swift specific
 *.hmap
@@ -32,12 +34,17 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
+## Projects
+NotoriousHunt.xcodeproj/*
+NotoriousHunt.xcworkspace/*
+
+## Bundle
+.bundle/
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 # Packages/
-# Package.pins
-# Package.resolved
 .build/
 
 # CocoaPods
@@ -46,23 +53,15 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-# Pods/
+Pods/
 
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
-
-Carthage/Build
-
-# fastlane
 #
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
+# Carthage/Build
+# Carthage/Checkouts
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Slather settings
+.slather.yml

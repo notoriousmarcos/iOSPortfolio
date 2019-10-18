@@ -1,0 +1,103 @@
+name: NotoriousHunt
+fileGroups: [src/NotoriousHunt, src/NotoriousHuntTests, src/NotoriousHuntUITests]
+attributes:
+  ORGANIZATIONNAME: Marcos Brito
+options:
+  bundlePrefix: com.marcosbrito
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+configs:
+  Debug: debug
+  Production Debug: debug
+  Test Debug: debug
+  Release: release
+  Production Release: release
+  Test Release: release
+settings:
+  configs:
+    Debug:
+      BUILD_PROFILE: debug
+    Production Debug:
+      BUILD_PROFILE: production
+    Test Debug:
+      BUILD_PROFILE: test
+    Release:
+      BUILD_PROFILE: debug
+    Production Release:
+      BUILD_PROFILE: production
+    Test Release:
+      BUILD_PROFILE: test
+targetTemplates:
+  NotoriousHuntTemplate:
+    platform: iOS
+    deploymentTarget: "13.0"
+    attributes:
+      DevelopmentTeam: 2Z93J25RK4
+    settings:
+      INFOPLIST_FILE: src/NotoriousHunt/Info.plist
+      TARGETED_DEVICE_FAMILY: 1
+targets:
+  NotoriousHunt:
+    templates:
+      - NotoriousHuntTemplate
+    type: application
+    sources:
+      - path: src/NotoriousHunt
+        createIntermediateGroups: true
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.marcosbrito.NotoriousHunt
+    postCompileScripts:
+      - script: ${PODS_ROOT}/SwiftLint/swiftlint
+        name: Swiftlint
+  NotoriousHuntTests:
+    templates:
+      - NotoriousHuntTemplate
+    type: bundle.unit-test
+    sources:
+      - path: src/NotoriousHuntTests
+    dependencies:
+      - target: NotoriousHunt
+schemes:
+  NotoriousHunt Debug:
+    build:
+      targets:
+        NotoriousHunt: all
+        NotoriousHuntTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets: 
+        - name: NotoriousHuntTests
+          parallelizable: false
+          randomExecutionOrder: true
+      commandLineArguments:
+        "--isExecutingUnitTests": true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  NotoriousHunt Test:
+    build:
+      targets:
+        NotoriousHunt: all
+        NotoriousHuntTests: [test]
+    run:
+      config: Test Debug
+    test:
+      config: Test Debug
+      gatherCoverageData: true
+      targets: 
+        - name: NotoriousHuntTests
+          parallelizable: false
+          randomExecutionOrder: true
+    profile:
+      config: Test Release
+    analyze:
+      config: Test Debug
+    archive:
+      config: Test Release
